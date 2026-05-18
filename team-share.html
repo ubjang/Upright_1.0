@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>청렴 바이브 — 씨앗에서 나무까지, 함께 키워가요</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --emerald-50:#ecfdf5;--emerald-100:#d1fae5;--emerald-200:#a7f3d0;--emerald-300:#6ee7b7;
+  --emerald-400:#34d399;--emerald-500:#10b981;--emerald-600:#059669;--emerald-700:#047857;
+  --emerald-800:#065f46;--emerald-900:#064e3b;--emerald-950:#022c22;
+  --sky-50:#f0f9ff;--sky-100:#e0f2fe;--sky-200:#bae6fd;--sky-600:#0284c7;--sky-700:#0369a1;--sky-900:#0c4a6e;
+  --amber-50:#fffbeb;--amber-100:#fef3c7;--amber-800:#92400e;
+  --slate-100:#f1f5f9;--slate-200:#e2e8f0;--slate-300:#cbd5e1;--slate-400:#94a3b8;
+  --slate-500:#64748b;--slate-600:#475569;--slate-700:#334155;--slate-800:#1e293b;--slate-900:#0f172a;
+}
+body{
+  font-family:'Noto Sans KR',system-ui,-apple-system,sans-serif;
+  background:linear-gradient(160deg,#ecfdf5 0%,#f0f9ff 40%,#ffffff 100%);
+  color:var(--slate-800);line-height:1.7;min-height:100vh;
+}
+.container{max-width:760px;margin:0 auto;padding:24px 20px 60px}
+
+/* Hero */
+.hero{text-align:center;padding:56px 20px 40px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(16,185,129,.12) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-block;background:linear-gradient(135deg,var(--emerald-500),var(--sky-600));color:#fff;font-size:12px;font-weight:600;padding:5px 16px;border-radius:20px;letter-spacing:.5px;margin-bottom:20px}
+.hero h1{font-size:clamp(26px,5vw,36px);font-weight:800;color:var(--emerald-950);line-height:1.35;margin-bottom:12px}
+.hero h1 span{background:linear-gradient(135deg,var(--emerald-600),var(--sky-600));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:15px;color:var(--slate-600);max-width:520px;margin:0 auto;line-height:1.8}
+
+/* Motivation Banner */
+.motivation{
+  margin:32px 0;padding:28px 32px;border-radius:20px;
+  background:linear-gradient(135deg,var(--emerald-600),var(--emerald-700),var(--sky-700));
+  color:#fff;text-align:center;position:relative;overflow:hidden;
+}
+.motivation::after{content:'🌿';position:absolute;right:20px;bottom:10px;font-size:48px;opacity:.2}
+.motivation .quote{font-size:20px;font-weight:700;line-height:1.5;margin-bottom:8px}
+.motivation .sub{font-size:13px;opacity:.85;line-height:1.6}
+
+/* Growth Section */
+.growth-title{text-align:center;margin:48px 0 8px;font-size:22px;font-weight:700;color:var(--emerald-900)}
+.growth-sub{text-align:center;font-size:14px;color:var(--slate-500);margin-bottom:28px}
+.growth-track{display:flex;align-items:flex-end;justify-content:center;gap:16px;padding:32px 12px;
+  background:linear-gradient(180deg,var(--emerald-50) 0%,var(--sky-50) 100%);
+  border-radius:24px;border:1px solid var(--emerald-100);position:relative;overflow:hidden}
+.growth-track::before{content:'';position:absolute;bottom:0;left:0;right:0;height:40px;background:linear-gradient(0deg,rgba(139,69,19,.08),transparent)}
+.stage{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1;max-width:120px}
+.stage .icon{font-size:clamp(32px,6vw,48px);transition:transform .3s}
+.stage:hover .icon{transform:scale(1.15) translateY(-4px)}
+.stage .label{font-size:13px;font-weight:600;color:var(--emerald-800)}
+.stage .count{font-size:11px;color:var(--slate-500);background:var(--emerald-100);padding:2px 10px;border-radius:10px}
+.arrow{color:var(--emerald-300);font-size:20px;margin-bottom:32px;flex-shrink:0}
+
+/* Section Card */
+.section{margin-top:40px}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.section-header .num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0}
+.section-header h2{font-size:18px;font-weight:700;color:var(--slate-900)}
+.card{background:rgba(255,255,255,.85);border-radius:20px;padding:24px 28px;border:1px solid var(--emerald-100);
+  backdrop-filter:blur(8px);box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.card p{font-size:14px;color:var(--slate-600);line-height:1.8;margin-bottom:12px}
+.card p:last-child{margin-bottom:0}
+
+/* Feature Grid */
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:16px}
+.feat{background:rgba(255,255,255,.9);border-radius:16px;padding:20px;border:1px solid var(--emerald-100);text-align:center;transition:transform .2s,box-shadow .2s}
+.feat:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(16,185,129,.1)}
+.feat .emoji{font-size:32px;margin-bottom:10px}
+.feat h3{font-size:15px;font-weight:600;color:var(--emerald-900);margin-bottom:6px}
+.feat p{font-size:13px;color:var(--slate-500);line-height:1.6}
+
+/* Axes Tags */
+.axes{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.axis-tag{padding:6px 14px;border-radius:12px;font-size:12px;font-weight:500;background:var(--emerald-50);color:var(--emerald-800);border:1px solid var(--emerald-100)}
+
+/* Checklist Examples */
+.checklist{list-style:none;margin-top:12px}
+.checklist li{padding:10px 14px;border-radius:12px;font-size:13px;color:var(--slate-700);background:var(--emerald-50);margin-bottom:8px;display:flex;align-items:center;gap:10px;border:1px solid var(--emerald-100)}
+.checklist li::before{content:'✅';font-size:14px;flex-shrink:0}
+
+/* Quiz Example */
+.quiz-ex{background:var(--sky-50);border-radius:14px;padding:16px 20px;border:1px solid var(--sky-100);margin-top:12px}
+.quiz-ex .q{font-size:13px;font-weight:600;color:var(--sky-900);margin-bottom:8px}
+.quiz-ex .opts{display:flex;gap:8px}
+.quiz-ex .opt{padding:6px 16px;border-radius:10px;font-size:12px;font-weight:600;cursor:default}
+.opt-o{background:var(--emerald-500);color:#fff}
+.opt-x{background:var(--slate-200);color:var(--slate-600)}
+
+/* Schedule */
+.schedule{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.sch-card{background:linear-gradient(135deg,var(--emerald-50),var(--sky-50));border-radius:14px;padding:16px;text-align:center;border:1px solid var(--emerald-100)}
+.sch-card .day{font-size:28px;font-weight:800;color:var(--emerald-600)}
+.sch-card .desc{font-size:12px;color:var(--slate-500);margin-top:4px}
+
+/* CTA */
+.cta{text-align:center;margin-top:48px;padding:36px 24px;
+  background:linear-gradient(135deg,var(--emerald-50),var(--sky-50));
+  border-radius:24px;border:1px solid var(--emerald-100)}
+.cta .emoji{font-size:48px;margin-bottom:12px}
+.cta h2{font-size:20px;font-weight:700;color:var(--emerald-900);margin-bottom:8px}
+.cta p{font-size:14px;color:var(--slate-600);line-height:1.7;max-width:480px;margin:0 auto}
+
+/* Footer */
+.footer{text-align:center;margin-top:48px;padding:20px;font-size:12px;color:var(--slate-400);border-top:1px solid var(--slate-200)}
+
+@media(max-width:480px){
+  .container{padding:16px 14px 40px}
+  .hero{padding:36px 12px 28px}
+  .motivation{padding:20px}
+  .growth-track{flex-wrap:wrap;gap:12px;padding:20px}
+  .arrow{display:none}
+  .card{padding:18px 20px}
+  .features{grid-template-columns:1fr}
+  .schedule{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">🌱 TEAM SHARE</div>
+    <h1>청렴한 마인드,<br><span>씨앗에서 나무까지</span> 함께 키워가요</h1>
+    <p>우리 팀의 청렴 인식을 함께 높여가는 <strong>「청렴 바이브」</strong>를 소개합니다.<br>
+    작은 실천이 모여 큰 나무가 되듯, 매일의 청렴 습관이 우리 조직의 신뢰를 만들어요.</p>
+  </div>
+
+  <!-- Motivation Banner -->
+  <div class="motivation">
+    <div class="quote">🌿 "작은 씨앗 하나가 울창한 숲을 만든다"</div>
+    <div class="sub">
+      청렴은 거창한 것이 아니에요. 매일 한 가지 실천, 월 두 번의 가벼운 참여가<br>
+      우리 팀의 청렴 문화를 단단하게 키워갑니다. 함께해요! 💪
+    </div>
+  </div>
+
+  <!-- Growth Stages -->
+  <h2 class="growth-title">🌱 씨앗에서 나무까지 — 성장 단계</h2>
+  <p class="growth-sub">체크 & 퀴즈에 참여할수록 나의 청렴 새싹이 자라나요</p>
+  <div class="growth-track">
+    <div class="stage">
+      <div class="icon">🫘</div>
+      <div class="label">씨앗</div>
+      <div class="count">0회~</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="stage">
+      <div class="icon">🌱</div>
+      <div class="label">새싹</div>
+      <div class="count">2회~</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="stage">
+      <div class="icon">🌿</div>
+      <div class="label">잎이 나요</div>
+      <div class="count">4회~</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="stage">
+      <div class="icon">🪴</div>
+      <div class="label">무럭무럭</div>
+      <div class="count">8회~</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="stage">
+      <div class="icon">🌳</div>
+      <div class="label">청렴 나무</div>
+      <div class="count">14회~</div>
+    </div>
+  </div>
+
+  <!-- What is 청렴 바이브 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num" style="background:linear-gradient(135deg,var(--emerald-500),var(--emerald-600))">1</div>
+      <h2>청렴 바이브란?</h2>
+    </div>
+    <div class="card">
+      <p>공공기관 <strong>청렴도 평가</strong>에서 다루는 영역을 바탕으로, 매월 <strong>1일과 15일</strong>(한국 시간)에 가볍게 <strong>체크</strong>와 <strong>퀴즈</strong>에 참여할 수 있는 내부 직원용 웹앱이에요.</p>
+      <p>신고·제보 기능은 포함하지 않으며, <strong>부담 없이 청렴 습관을 떠올리는 것</strong>이 목표입니다.</p>
+      <div class="features">
+        <div class="feat">
+          <div class="emoji">✅</div>
+          <h3>오늘의 체크</h3>
+          <p>청렴 영역별 실천 문구 중<br>3가지를 골라 체크해요</p>
+        </div>
+        <div class="feat">
+          <div class="emoji">❓</div>
+          <h3>청렴 퀴즈</h3>
+          <p>사례형 OX·선택형 2문제를<br>풀고 해설을 확인해요</p>
+        </div>
+        <div class="feat">
+          <div class="emoji">🌱</div>
+          <h3>성장 트래커</h3>
+          <p>누적 참여에 따라<br>씨앗→나무로 성장해요</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 평가 영역 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num" style="background:linear-gradient(135deg,var(--sky-600),var(--sky-700))">2</div>
+      <h2>어떤 청렴 영역을 다루나요?</h2>
+    </div>
+    <div class="card">
+      <p>청렴도 평가에서 자주 다루는 <strong>6개 핵심 영역</strong>을 바탕으로 체크 문구와 퀴즈를 구성했어요.</p>
+      <div class="axes">
+        <span class="axis-tag">🏛️ 청렴 의무·직무윤리</span>
+        <span class="axis-tag">⚖️ 이해충돌 방지</span>
+        <span class="axis-tag">🎁 금품·향응·편의</span>
+        <span class="axis-tag">🚫 청탁·알선 금지</span>
+        <span class="axis-tag">📋 공정성·투명성</span>
+        <span class="axis-tag">🔒 행동강령·비밀 유지</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 체크 예시 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num" style="background:linear-gradient(135deg,var(--emerald-500),var(--emerald-600))">3</div>
+      <h2>체크는 이렇게 해요</h2>
+    </div>
+    <div class="card">
+      <p>서로 다른 청렴 영역에서 <strong>3가지 실천 문구</strong>가 랜덤으로 나와요. 마음에 드는 항목을 골라 체크하면 끝!</p>
+      <ul class="checklist">
+        <li>직위를 이용해 사적인 이익을 얻지 않도록 스스로 점검해 봐요.</li>
+        <li>담당 업무와 관련된 선물·향응은 정중히 거절해요.</li>
+        <li>민원인을 차별 없이 동일한 기준으로 안내해요.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 퀴즈 예시 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num" style="background:linear-gradient(135deg,var(--sky-600),var(--sky-700))">4</div>
+      <h2>퀴즈는 이렇게 풀어요</h2>
+    </div>
+    <div class="card">
+      <p>사례형 <strong>OX</strong>와 <strong>선택형</strong> 문제 2개를 풀고, 바로 해설을 확인해요.</p>
+      <div class="quiz-ex">
+        <div class="q">Q. 민원인이 감사의 표시로 커피 쿠폰을 건넸어요. 업무와 직접 연관이 있다면 정중히 거절하는 편이 좋을까요?</div>
+        <div class="opts">
+          <span class="opt opt-o">⭕ O 정답!</span>
+          <span class="opt opt-x">❌ X</span>
+        </div>
+      </div>
+      <p style="margin-top:12px;font-size:13px;color:var(--emerald-700)">
+        💡 행동강령에서는 직무 관련성이 있는 금품·편의는 특히 조심하라고 안내해요.
+      </p>
+    </div>
+  </div>
+
+  <!-- 참여 일정 -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num" style="background:linear-gradient(135deg,var(--amber-800),#b45309)">5</div>
+      <h2>참여 일정</h2>
+    </div>
+    <div class="card">
+      <p>매월 <strong>두 번</strong>, 아래 날짜에 체크와 퀴즈가 열려요. 5분이면 충분해요!</p>
+      <div class="schedule">
+        <div class="sch-card">
+          <div class="day">1일</div>
+          <div class="desc">매월 첫째 날<br>체크 + 퀴즈 오픈</div>
+        </div>
+        <div class="sch-card">
+          <div class="day">15일</div>
+          <div class="desc">매월 보름날<br>체크 + 퀴즈 오픈</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div class="emoji">🌳</div>
+    <h2>함께 청렴 나무를 키워가요!</h2>
+    <p>
+      씨앗 하나에서 시작해 청렴 나무가 되기까지,<br>
+      우리의 작은 실천 하나하나가 조직의 <strong>신뢰</strong>와 <strong>투명성</strong>을 만들어 갑니다.<br>
+      <strong>청렴한 마인드를 항상 유지하고, 함께 성장해 나가요!</strong> 🌿
+    </p>
+  </div>
+
+  <div class="footer">
+    내부 직원용 · 청렴 바이브 팀 공유 자료 · 2026
+  </div>
+
+</div>
+
+</body>
+</html>
