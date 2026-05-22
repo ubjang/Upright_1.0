@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>서울강동지사 청렴도 평가 향상 프로젝트 — 청렴 바이브 MVP 보고서</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-green: #064e3b;
+      --mid-green: #059669;
+      --light-green: #10b981;
+      --soft-green: #ecfdf5;
+      --gold-yellow: #f59e0b;
+      --gold-dark: #b45309;
+      --soil-brown: #78350f;
+      --dark-slate: #0f172a;
+      --medium-slate: #475569;
+      --light-slate: #f8fafc;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --shadow-premium: 0 20px 25px -5px rgba(6, 78, 59, 0.08), 0 10px 10px -5px rgba(6, 78, 59, 0.04);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Noto Sans KR', 'Outfit', sans-serif;
+      background-color: var(--light-slate);
+      color: var(--dark-slate);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER & NAVIGATION ── */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(6, 78, 59, 0.08);
+      z-index: 1000;
+      padding: 16px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--primary-green);
+      letter-spacing: -0.5px;
+    }
+
+    .brand span {
+      background: linear-gradient(135deg, var(--mid-green), var(--gold-dark));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+    }
+
+    nav ul a {
+      text-decoration: none;
+      color: var(--medium-slate);
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      padding: 6px 12px;
+      border-radius: 8px;
+    }
+
+    nav ul a:hover {
+      color: var(--mid-green);
+      background-color: var(--soft-green);
+    }
+
+    /* ── HERO SECTION ── */
+    .hero {
+      padding: 160px 40px 100px;
+      background: linear-gradient(135deg, #022c22 0%, #064e3b 40%, #065f46 70%, #ecfdf5 100%);
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .hero-container {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: var(--gold-yellow);
+      padding: 6px 18px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero h1 span {
+      color: var(--gold-yellow);
+      position: relative;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 680px;
+      margin: 0 auto 48px;
+      line-height: 1.8;
+    }
+
+    /* Floating Leaves Animation */
+    .falling-leaf {
+      position: absolute;
+      width: 20px;
+      height: 25px;
+      background-color: var(--light-green);
+      border-radius: 50% 0 50% 0;
+      opacity: 0.3;
+      pointer-events: none;
+      animation: drift 10s linear infinite;
+    }
+
+    .leaf-1 { top: 20%; left: 10%; animation-duration: 8s; background-color: var(--gold-yellow); }
+    .leaf-2 { top: 40%; right: 12%; animation-duration: 12s; }
+    .leaf-3 { top: 70%; left: 18%; animation-duration: 9s; }
+    .leaf-4 { top: 15%; right: 25%; animation-duration: 11s; }
+
+    @keyframes drift {
+      0% { transform: translateY(-50px) rotate(0deg) translateX(0); }
+      50% { transform: translateY(300px) rotate(180deg) translateX(50px); }
+      100% { transform: translateY(600px) rotate(360deg) translateX(-20px); opacity: 0; }
+    }
+
+    /* ── CONTAINER & LAYOUT ── */
+    .section-wrap {
+      padding: 100px 40px;
+    }
+
+    .section-wrap:nth-child(even) {
+      background-color: white;
+    }
+
+    .section-container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--mid-green);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      font-weight: 800;
+      color: var(--primary-green);
+      letter-spacing: -0.8px;
+    }
+
+    .section-title span {
+      color: var(--gold-dark);
+    }
+
+    .divider {
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--mid-green), var(--gold-yellow));
+      margin: 20px auto 0;
+      border-radius: 2px;
+    }
+
+    /* ── PAIN POINT & SOLUTION ── */
+    .grid-two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .pain-card {
+      background-color: #fff1f2;
+      border-left: 6px solid #f43f5e;
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .pain-card h3 {
+      color: #9f1239;
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pain-card ul {
+      list-style-type: none;
+    }
+
+    .pain-card ul li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      color: #4c0519;
+      font-weight: 500;
+    }
+
+    .pain-card ul li::before {
+      content: '✕';
+      position: absolute;
+      left: 0;
+      color: #f43f5e;
+      font-weight: 900;
+    }
+
+    .solution-card {
+      background-color: var(--soft-green);
+      border-left: 6px solid var(--light-green);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .solution-card h3 {
+      color: var(--primary-green);
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .solution-card ul {
+      list-style-type: none;
+    }
+
+    .solution-card ul li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      color: var(--primary-green);
+      font-weight: 500;
+    }
+
+    .solution-card ul li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--mid-green);
+      font-weight: 900;
+    }
+
+    /* ── MVP FEATURES ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .feature-box {
+      background-color: white;
+      border-radius: 20px;
+      padding: 40px 30px;
+      box-shadow: var(--shadow-premium);
+      border: 1px solid rgba(6, 78, 59, 0.05);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .feature-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 40px -10px rgba(6, 78, 59, 0.12);
+    }
+
+    .feature-icon-wrap {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background-color: var(--soft-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .feature-icon-wrap svg {
+      width: 30px;
+      height: 30px;
+      stroke: var(--mid-green);
+    }
+
+    .feature-box h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary-green);
+      margin-bottom: 12px;
+    }
+
+    .feature-box p {
+      font-size: 0.9rem;
+      color: var(--medium-slate);
+      line-height: 1.7;
+    }
+
+    /* Interactive Growth Stage Map */
+    .growth-map-wrap {
+      background: linear-gradient(180deg, var(--soft-green) 0%, white 100%);
+      border-radius: 24px;
+      padding: 48px 30px;
+      border: 1px solid rgba(6, 78, 59, 0.08);
+      margin-top: 50px;
+    }
+
+    .growth-map-title {
+      text-align: center;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary-green);
+      margin-bottom: 32px;
+    }
+
+    .growth-stages {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .growth-stages::before {
+      content: '';
+      position: absolute;
+      top: 35px;
+      left: 5%;
+      right: 5%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-yellow), var(--light-green), var(--primary-green));
+      z-index: 1;
+    }
+
+    .stage-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 16%;
+      position: relative;
+      z-index: 2;
+    }
+
+    .stage-circle {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background-color: white;
+      border: 4px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .stage-item.active .stage-circle {
+      border-color: var(--light-green);
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+    }
+
+    .stage-label {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--primary-green);
+      margin-top: 16px;
+    }
+
+    .stage-count {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background-color: var(--border-color);
+      color: var(--medium-slate);
+      padding: 2px 10px;
+      border-radius: 20px;
+      margin-top: 6px;
+    }
+
+    .stage-item.active .stage-count {
+      background-color: var(--light-green);
+      color: white;
+    }
+
+    .stage-popover {
+      margin-top: 30px;
+      background-color: white;
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-lg);
+      text-align: left;
+    }
+
+    .stage-popover h4 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--primary-green);
+      margin-bottom: 8px;
+    }
+
+    .stage-popover p {
+      font-size: 0.9rem;
+      color: var(--medium-slate);
+    }
+
+    /* ── FOLDER ARCHITECTURE SECTION ── */
+    .folder-section {
+      background-color: white;
+    }
+
+    .folder-grid {
+      display: grid;
+      grid-template-columns: 350px 1fr;
+      gap: 40px;
+    }
+
+    .folder-tree {
+      background-color: var(--light-slate);
+      border-radius: 16px;
+      padding: 30px 24px;
+      border: 1px solid var(--border-color);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      user-select: none;
+    }
+
+    .tree-title {
+      font-weight: 700;
+      color: var(--primary-green);
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-bottom: 1px dashed var(--border-color);
+      padding-bottom: 10px;
+    }
+
+    .tree-node {
+      margin-left: 15px;
+      position: relative;
+      padding: 4px 0;
+    }
+
+    .tree-node::before {
+      content: '';
+      position: absolute;
+      left: -10px;
+      top: -10px;
+      bottom: 10px;
+      width: 1px;
+      border-left: 1px solid #cbd5e1;
+    }
+
+    .tree-node::after {
+      content: '';
+      position: absolute;
+      left: -10px;
+      top: 12px;
+      width: 8px;
+      border-top: 1px solid #cbd5e1;
+    }
+
+    .tree-node.is-dir > .node-name {
+      font-weight: 600;
+      color: var(--primary-green);
+      cursor: pointer;
+    }
+
+    .tree-node.is-file > .node-name {
+      color: var(--medium-slate);
+      cursor: pointer;
+    }
+
+    .tree-node.is-file:hover > .node-name,
+    .tree-node.is-dir:hover > .node-name {
+      color: var(--mid-green);
+      text-decoration: underline;
+    }
+
+    .node-name {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .node-desc-panel {
+      background-color: var(--light-slate);
+      border-radius: 16px;
+      padding: 40px;
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .node-desc-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 16px;
+    }
+
+    .node-desc-type {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background-color: var(--soft-green);
+      color: var(--mid-green);
+    }
+
+    .node-desc-name {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary-green);
+    }
+
+    .node-desc-body {
+      font-size: 0.95rem;
+      color: var(--medium-slate);
+      line-height: 1.8;
+    }
+
+    .node-desc-body strong {
+      color: var(--primary-green);
+    }
+
+    .node-desc-body ul {
+      margin-top: 16px;
+      margin-left: 20px;
+    }
+
+    .node-desc-body li {
+      margin-bottom: 8px;
+    }
+
+    /* ── SYSTEM ARCHITECTURE & SECURITY ── */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+
+    .arch-card {
+      background-color: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: var(--shadow-premium);
+      border: 1px solid rgba(6, 78, 59, 0.05);
+    }
+
+    .arch-card h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary-green);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 2px solid var(--soft-green);
+      padding-bottom: 12px;
+    }
+
+    .arch-list {
+      list-style-type: none;
+    }
+
+    .arch-list li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 20px;
+    }
+
+    .arch-list li::before {
+      content: '●';
+      position: absolute;
+      left: 0;
+      color: var(--mid-green);
+      font-size: 0.8rem;
+      top: 2px;
+    }
+
+    .arch-list li strong {
+      color: var(--primary-green);
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .arch-list li span {
+      font-size: 0.85rem;
+      color: var(--medium-slate);
+      display: block;
+      line-height: 1.6;
+    }
+
+    /* ── ROADMAP ── */
+    .roadmap-timeline {
+      position: relative;
+      margin-top: 50px;
+    }
+
+    .roadmap-timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background-color: var(--soft-green);
+    }
+
+    .roadmap-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    .roadmap-item::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: white;
+      border: 4px solid var(--mid-green);
+      z-index: 2;
+    }
+
+    .roadmap-side {
+      width: 45%;
+    }
+
+    .roadmap-content {
+      background-color: white;
+      border-radius: 16px;
+      padding: 30px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .roadmap-content:hover {
+      box-shadow: var(--shadow-lg);
+      border-color: var(--light-green);
+    }
+
+    .roadmap-item:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .roadmap-quarter {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      color: var(--gold-dark);
+      font-size: 1rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .roadmap-content h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary-green);
+      margin-bottom: 12px;
+    }
+
+    .roadmap-content p {
+      font-size: 0.85rem;
+      color: var(--medium-slate);
+      line-height: 1.6;
+    }
+
+    /* ── CONCLUSION & FOOTER ── */
+    .conclusion {
+      background: linear-gradient(135deg, #022c22 0%, #064e3b 100%);
+      color: white;
+      text-align: center;
+      padding: 100px 40px;
+      position: relative;
+    }
+
+    .conclusion-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .conclusion h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .conclusion h2 span {
+      color: var(--gold-yellow);
+    }
+
+    .conclusion p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.9;
+      margin-bottom: 40px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background-color: var(--gold-yellow);
+      color: var(--primary-green);
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 16px 36px;
+      border-radius: 100px;
+      box-shadow: 0 10px 20px rgba(245, 158, 11, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #f59e0b;
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(245, 158, 11, 0.4);
+    }
+
+    footer {
+      background-color: #022c22;
+      color: rgba(255, 255, 255, 0.4);
+      padding: 40px;
+      text-align: center;
+      font-size: 0.8rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    footer p {
+      margin-bottom: 8px;
+    }
+
+    /* ── RESPONSIVE DESIGN ── */
+    @media (max-width: 992px) {
+      .grid-two {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .folder-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .arch-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+
+      header {
+        padding: 16px 20px;
+        justify-content: center;
+      }
+
+      .section-wrap {
+        padding: 60px 20px;
+      }
+
+      .roadmap-timeline::before {
+        left: 20px;
+      }
+
+      .roadmap-item {
+        flex-direction: row !important;
+        margin-bottom: 40px;
+      }
+
+      .roadmap-item::before {
+        left: 20px;
+      }
+
+      .roadmap-side {
+        width: 100%;
+        padding-left: 45px;
+      }
+
+      .growth-stages {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .growth-stages::before {
+        display: none;
+      }
+
+      .stage-item {
+        width: 100%;
+        flex-direction: row;
+        gap: 16px;
+        text-align: left;
+        align-items: center;
+      }
+
+      .stage-label {
+        margin-top: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── HEADER & NAVIGATION ── -->
+  <header>
+    <div class="brand">
+      🌳 <span>서울강동지사 청렴 바이브</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#intro">기획 배경</a></li>
+        <li><a href="#features">핵심 기능</a></li>
+        <li><a href="#architecture">폴더 및 아키텍처</a></li>
+        <li><a href="#security">보안 및 RLS</a></li>
+        <li><a href="#roadmap">성장 로드맵</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ── HERO SECTION ── -->
+  <section class="hero" id="hero">
+    <div class="falling-leaf leaf-1"></div>
+    <div class="falling-leaf leaf-2"></div>
+    <div class="falling-leaf leaf-3"></div>
+    <div class="falling-leaf leaf-4"></div>
+
+    <div class="hero-container">
+      <div class="badge">SEOUL GANGDONG INTEGRITY PROJECT</div>
+      <h1>공공기관 청렴도 향상을 위한<br><span>직원 참여형 성장 웹앱 MVP</span></h1>
+      <p>
+        직원들이 어렵고 딱딱하게 느끼는 '청렴도 평가'를 일상 속 즐거운 다짐과 나무 성장 경험으로 전환하여,<br>
+        실질적 청렴 인식을 제고하는 서울강동지사 전용 혁신 프로젝트를 상세히 소개합니다.
+      </p>
+      <a href="#intro" class="cta-button">보고서 자세히 보기</a>
+    </div>
+  </section>
+
+  <!-- ── INTRO SECTION (PAIN POINT & SOLUTION) ── -->
+  <section class="section-wrap" id="intro">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-subtitle">PROJECT MOTIVATION</span>
+        <h2 class="section-title">왜 <span>'청렴 바이브'</span> 웹앱을 기획했는가?</h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="grid-two">
+        <div class="pain-card">
+          <h3>🚨 기존 방식의 핵심 Pain Point</h3>
+          <ul>
+            <li><strong>지루하고 하향식 교육 방식:</strong> 매년 형식적으로 시행되는 서면 위주, 주입식 청렴 교육으로 직원의 자발적인 동기부여가 크게 부족함.</li>
+            <li><strong>현실 실무와의 심각한 괴리:</strong> 구체적인 일상 실천보다 법령이나 교과서적이고 모호한 개념에 머물러 직원들이 마음에 와닿지 않음.</li>
+            <li><strong>참여 및 피드백 결여:</strong> 본인이 청렴도 향상을 위해 기여하고 있다는 체감이나 시각적인 성취 요소가 전혀 존재하지 않음.</li>
+          </ul>
+        </div>
+
+        <div class="solution-card">
+          <h3>✨ 청렴 바이브의 혁신적인 해결방안</h3>
+          <ul>
+            <li><strong>자율적 상호작용 플랫폼:</strong> 웹/모바일 친화적인 심플한 UX를 도입하여 언제 어디서나 단 1분 만에 가볍게 참여할 수 있도록 유도.</li>
+            <li><strong>일상 속 작은 습관의 적립:</strong> 매월 1일과 15일에 실천하기 쉬운 다짐 문구를 확인하고 퀴즈를 풀면서 자연스럽게 내재화.</li>
+            <li><strong>'청렴 나무 성장' 메카니즘:</strong> 본인의 참여 이력이 누적되면서 새싹이 자라나 울창한 청렴 나무가 되는 과정을 시각화하여 성취감을 부여.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MVP 핵심 기능 소개 ── -->
+  <section class="section-wrap" id="features">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-subtitle">MVP CORE FUNCTIONALITY</span>
+        <h2 class="section-title">현재 가동 중인 <span>핵심 MVP 기능</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="features-grid">
+        <!-- Feature 1 -->
+        <div class="feature-box">
+          <div class="feature-icon-wrap">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3>1. 오늘의 청렴 실천 체크</h3>
+          <p>
+            공공기관 청렴도 평가의 6가지 핵심 축(직무윤리, 이해충돌, 금품·향응, 청탁·알선, 공정·투명, 행동강령)에서 추출된 다짐 문구를 보여줍니다. 서로 다른 평가 영역에서 추출된 3개의 실천 문구 중 본인이 오늘 다짐할 문구들을 편안하게 선택하여 약속합니다.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-box">
+          <div class="feature-icon-wrap">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3>2. 사례 기반 마이크로 퀴즈</h3>
+          <p>
+            직무 현장에서 흔히 겪을 수 있는 미묘한 윤리적 갈등 상황을 OX나 객관식 형태의 시나리오 퀴즈(2문항)로 풀어봅니다. 답을 제출하는 즉시 알기 쉬운 핵심 해설이 나타나 복잡한 임직원 행동강령을 상황별로 학습할 수 있습니다.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-box">
+          <div class="feature-icon-wrap">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+            </svg>
+          </div>
+          <h3>3. 관리자 전용 관제 패널</h3>
+          <p>
+            지사 관리자는 암호화된 채널을 통해 직원 명부의 추가/수정/삭제를 진행할 수 있습니다. 또한, 지사 전체 직원의 날짜별 체크율, 퀴즈 정답률 현황을 요약된 수치 카드로 모니터링하여 추진 활동의 동향과 성과를 한눈에 파악합니다.
+          </p>
+        </div>
+      </div>
+
+      <!-- Growth Stages Map -->
+      <div class="growth-map-wrap">
+        <h3 class="growth-map-title">🌳 청렴 나무 성장 모델 (5단계 비주얼 트래커)</h3>
+        <div class="growth-stages">
+          <div class="stage-item" onclick="showStageDesc(1, '씨앗 단계 (0회~)', '아직 물을 주지 않은 최초의 씨앗 상태입니다. 1일/15일 제출 기간에 첫 참여를 완료하면 귀여운 새싹으로 변화합니다.')">
+            <div class="stage-circle">🫘</div>
+            <div class="stage-label">씨앗 단계</div>
+            <div class="stage-count">0회 이상</div>
+          </div>
+          <div class="stage-item active" onclick="showStageDesc(2, '청렴 새싹 (2회~)', '작은 실천의 습관을 기르기 시작한 단계입니다. 화분 흙 위로 귀여운 청렴 새싹이 돋아나 시각적인 성장을 보여줍니다.')">
+            <div class="stage-circle">🌱</div>
+            <div class="stage-label">청렴 새싹</div>
+            <div class="stage-count">2회 이상</div>
+          </div>
+          <div class="stage-item" onclick="showStageDesc(3, '잎이 활짝 (4회~)', '습관이 몸에 배기 시작하며 이파리가 여러 갈래로 뻗어나가는 청량한 상태입니다. 실질적인 실천 단계에 접어들었습니다.')">
+            <div class="stage-circle">🌿</div>
+            <div class="stage-label">잎새 단계</div>
+            <div class="stage-count">4회 이상</div>
+          </div>
+          <div class="stage-item" onclick="showStageDesc(4, '무럭무럭 (8회~)', '뿌리가 굳건해지고 대가 굵어지는 본격 화분 단계입니다. 지사 내 주변 동료들에게 청렴 바이브를 전파하는 전파자입니다.')">
+            <div class="stage-circle">🪴</div>
+            <div class="stage-label">성장 단계</div>
+            <div class="stage-count">8회 이상</div>
+          </div>
+          <div class="stage-item" onclick="showStageDesc(5, '청렴 나무 (14회~)', '지사 내 청렴 문화를 단단히 지키는 거대한 청렴 나무가 완성되었습니다. 황금빛 열매가 맺히며 모범 임직원 인증이 주어집니다.')">
+            <div class="stage-circle">🌳</div>
+            <div class="stage-label">청렴 나무</div>
+            <div class="stage-count">14회 이상</div>
+          </div>
+        </div>
+
+        <div class="stage-popover" id="stagePopover">
+          <h4 id="popoverTitle">청렴 새싹 (2회~)</h4>
+          <p id="popoverDesc">작은 실천의 습관을 기르기 시작한 단계입니다. 화분 흙 위로 귀여운 청렴 새싹이 돋아나 시각적인 성장을 보여줍니다. 카운트 클릭 시 상세 단계를 미리 확인하실 수 있습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 폴더 및 파일 구조 ── -->
+  <section class="section-wrap folder-section" id="architecture">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-subtitle">PROJECT DIRECTORY SUMMARY</span>
+        <h2 class="section-title">코드를 잘 몰라도 쉽게 이해하는 <span>전체 폴더 구조</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="folder-grid">
+        <!-- Interactive Folder Tree -->
+        <div class="folder-tree">
+          <div class="tree-title">📂 clean_1.0 워크스페이스</div>
+          
+          <div class="tree-node is-dir" onclick="describeNode('app', 'dir', '화면과 API 엔드포인트가 들어있는 프로젝트의 핵심 심장부입니다.')">
+            <span class="node-name">📂 app (화면 및 기능 라우트)</span>
+          </div>
+          <div class="tree-node is-dir" style="margin-left: 30px;" onclick="describeNode('app-admin', 'dir', '관리자 전용 대시보드로 통계를 열람하고 직원을 CRUD 조작하는 페이지가 속해 있습니다.')">
+            <span class="node-name">📂 admin (관리자 페이지)</span>
+          </div>
+          <div class="tree-node is-dir" style="margin-left: 30px;" onclick="describeNode('app-api', 'dir', '브라우저 화면이 아니라 서버와 Supabase 데이터베이스가 실제 통신할 때 사용하는 백엔드 API 목록입니다.')">
+            <span class="node-name">📂 api (서버 통신 API)</span>
+          </div>
+          <div class="tree-node is-file" style="margin-left: 30px;" onclick="describeNode('app-page', 'file', '홈페이지 화면의 뼈대를 담당하는 서버 컴포넌트입니다. Supabase를 통해 참여 횟수 데이터를 로드하여 나무 성장 게이지로 전달합니다.')">
+            <span class="node-name">📄 page.tsx (메인 홈 화면)</span>
+          </div>
+
+          <div class="tree-node is-dir" onclick="describeNode('components', 'dir', '웹페이지 화면의 세부 구성품(부품 블록)들이 모여 있는 곳입니다.')">
+            <span class="node-name">📂 components (화면 조각 컴포넌트)</span>
+          </div>
+          <div class="tree-node is-dir" style="margin-left: 30px;" onclick="describeNode('components-check', 'dir', '체크 박스를 클릭하여 당일 다짐 서약을 임시 계정으로 서버에 전송하는 메인 체크인 화면 블록입니다.')">
+            <span class="node-name">📂 check (실천 체크 박스 로직)</span>
+          </div>
+          <div class="tree-node is-dir" style="margin-left: 30px;" onclick="describeNode('components-quiz', 'dir', '퀴즈의 정답 판단, 맞춤 해설 노출, 정답 유도 애니메이션이 담겨 있는 주요 로직 컴포넌트입니다.')">
+            <span class="node-name">📂 quiz (사례형 퀴즈 로직)</span>
+          </div>
+          <div class="tree-node is-dir" style="margin-left: 30px;" onclick="describeNode('components-dashboard', 'dir', '새싹이 성장하는 모습과 당일 뱃지를 출력하는 홈 화면 메인 조각 컴포넌트들입니다.')">
+            <span class="node-name">📂 dashboard (새싹 성장 비주얼)</span>
+          </div>
+
+          <div class="tree-node is-dir" onclick="describeNode('lib', 'dir', '화면과 동작에 필요한 법적 청렴 기준 규칙 및 데이터베이스 연결망이 구현되어 있는 도서관 같은 폴더입니다.')">
+            <span class="node-name">📂 lib (비즈니스 규칙 및 DB 연동)</span>
+          </div>
+          <div class="tree-node is-dir" style="margin-left: 30px;" onclick="describeNode('lib-constants', 'dir', '청렴도 평가의 6대 영역, 가벼운 다짐 문구집, 퀴즈 문제 은행 등 실제 콘텐츠들이 정의된 설정 파일들입니다.')">
+            <span class="node-name">📂 constants (청렴 문구 및 문제 은행)</span>
+          </div>
+          <div class="tree-node is-dir" style="margin-left: 30px;" onclick="describeNode('lib-dates', 'dir', '지사 직원들이 1일과 15일에만 시스템에 참여할 수 있도록 시간을 계산해 주는 날짜 제한 유틸리티입니다.')">
+            <span class="node-name">📂 dates (제출일 제한 장치)</span>
+          </div>
+
+          <div class="tree-node is-dir" onclick="describeNode('supabase', 'dir', '서버 데이터베이스 테이블을 구축하고 RLS 권한을 설정하는 마이그레이션 SQL 문서들이 포함된 폴더입니다.')">
+            <span class="node-name">📂 supabase (데이터베이스 스키마)</span>
+          </div>
+        </div>
+
+        <!-- Description Panel -->
+        <div class="node-desc-panel" id="nodeDescPanel">
+          <div class="node-desc-header">
+            <span class="node-desc-type" id="nodeType">DIRECTORY</span>
+            <div class="node-desc-name" id="nodeName">📂 app</div>
+          </div>
+          <div class="node-desc-body" id="nodeDesc">
+            왼쪽의 <strong>프로젝트 구조 요약 트리</strong>에서 궁금한 폴더나 파일을 마우스로 클릭해 보세요.<br>
+            각 파일과 폴더가 <strong>내부 보고용 청렴 바이브 웹앱</strong>에서 구체적으로 어떤 기술적 및 업무적 핵심 역할을 수행하는지 상세한 설명이 나타납니다.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SYSTEM ARCHITECTURE & SECURITY ── -->
+  <section class="section-wrap" id="security">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-subtitle">ARCHITECTURE & COMPLIANCE</span>
+        <h2 class="section-title">시스템 <span>아키텍처 및 철저한 익명성 보장</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="arch-grid">
+        <!-- Tech Architecture -->
+        <div class="arch-card">
+          <h3>⚡ 최신 모던 웹 아키텍처</h3>
+          <ul class="arch-list">
+            <li>
+              <strong>Next.js 16 (Turbopack) 기반의 초고속 페이지 로드</strong>
+              <span>개발 생산성이 극대화되고 불필요한 번들 다운로드 없이 지사 직원들의 저사양 PC나 모바일 기기에서도 부드럽게 구동됩니다.</span>
+            </li>
+            <li>
+              <strong>Tailwind CSS v4를 활용한 초경량화 스타일 코딩</strong>
+              <span>성능을 저해하는 별도의 대형 CSS 라이브러리 없이 순수 유틸리티 스타일링을 통해 가벼운 인터페이스를 실현했습니다.</span>
+            </li>
+            <li>
+              <strong>서버 & 클라이언트 Supabase SDK 이원화</strong>
+              <span>보안이 필요한 어드민 API와 일반 브라우저 화면의 DB 트랜잭션을 엄격하게 분류하여 설계 안정성을 높였습니다.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Privacy & Security -->
+        <div class="arch-card">
+          <h3>🔒 익명성 보장을 통한 자유로운 솔직 참여</h3>
+          <ul class="arch-list">
+            <li>
+              <strong>Supabase Anonymous Sign-in (익명 세션 발급)</strong>
+              <span>개인 사번이나 사내 ID를 기반으로 로그인할 때 발생하는 "내 정보를 사측에서 감시하는 것 아닌가?" 하는 심리적 저항선을 완벽하게 파괴합니다. 최초 접속 시 브라우저 단위로 고유한 임시 키가 발급되어 개인을 특정하지 못하도록 보장합니다.</span>
+            </li>
+            <li>
+              <strong>Postgres Row Level Security (RLS) 강제 적용</strong>
+              <span>데이터베이스 테이블 수준에서 다른 사용자의 제출 데이터를 무단으로 가로채거나 위조하지 못하도록 본인 세션에만 읽기/쓰기를 완벽 격리했습니다.</span>
+            </li>
+            <li>
+              <strong>보안 관리자 검증 절차 적용</strong>
+              <span>직원 정보의 CRUD API 및 통계 관제 화면은 서버 환경 변수에 할당된 강력한 `ADMIN_PASSWORD` 인증을 거치지 않으면 비인가자가 절대로 해킹하거나 조회할 수 없도록 이중 방벽을 세웠습니다.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJECT ROADMAP ── -->
+  <section class="section-wrap" id="roadmap">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-subtitle">FUTURE ROADMAP</span>
+        <h2 class="section-title">서울강동지사 <span>청렴 바이브 고도화 로드맵</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="roadmap-timeline">
+        <!-- Milestone 1 -->
+        <div class="roadmap-item">
+          <div class="roadmap-side"></div>
+          <div class="roadmap-side">
+            <div class="roadmap-content">
+              <span class="roadmap-quarter">Phase 1 (현재 MVP 단계)</span>
+              <h3>기본 청렴 지표 점검 및 나무 성장 시연</h3>
+              <p>
+                익명 가벼운 체크박스 서약 및 상황식 시나리오 퀴즈 2문항의 완벽 구현. Supabase RLS 테이블 기반의 이력 데이터 보안 저장 체계 완성 및 관리자 수동 직원 CRUD 가동.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone 2 -->
+        <div class="roadmap-item">
+          <div class="roadmap-side"></div>
+          <div class="roadmap-side">
+            <div class="roadmap-content">
+              <span class="roadmap-quarter">Phase 2 (차기 릴리즈)</span>
+              <h3>사내 매직링크(Magic Link) 인증 전환</h3>
+              <p>
+                보안 수준이 한 단계 완화된 기관 메일 계정으로 안전하게 접근할 수 있도록 1회용 매직링크를 도입하여 브라우저 쿠키 삭제 시 데이터 유실 문제를 극복하고 본인의 청렴 나무를 영구 보존합니다.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Milestone 3 -->
+        <div class="roadmap-item">
+          <div class="roadmap-side"></div>
+          <div class="roadmap-side">
+            <div class="roadmap-content">
+              <span class="roadmap-quarter">Phase 3 (지사 전파)</span>
+              <h3>부서 단위 대항전 및 '강동 청렴의 숲' 론칭</h3>
+              <p>
+                지사 내 경영지원팀, 기술지원팀, 검사팀 등 부서별 실시간 참여율 데이터를 시각화하여 지사 전직원의 긍정적이고 즐거운 선의의 경쟁 구도를 구축합니다. 지사 내부 로비 모니터에 부서별 청렴 나무 숲을 미디어 아트로 실시간 전시하여 기관 대외 평가 준비에 기여합니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONCLUSION ── -->
+  <section class="conclusion">
+    <div class="conclusion-container">
+      <h2>작은 실천이 모여 만드는<br><span>서울강동지사의 투명한 미래</span></h2>
+      <p>
+        청렴 바이브 MVP는 공공기관 청렴도 평가 향상을 위한 혁신적인 '참여 중심형 웹 스탠다드'의 좋은 모범 사례입니다.<br>
+        강제적인 교육 대신, 아침 출근길 1분 동안 나무를 가꾸며 다짐하는 재미있는 변화의 바이브(Vibe)에 지사 모든 동료들이 함께하기를 기대합니다.
+      </p>
+      <a href="#hero" class="cta-button">보고서 처음으로 돌아가기</a>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p>© 2026 청렴 바이브 프로젝트 — 서울강동지사 청렴도 평가 향상 직원 참여형 테스크포스</p>
+    <p>본 문서 및 포함된 웹 애플리케이션 코드는 비공개 내부 추진용으로만 사용해 주십시오.</p>
+  </footer>
+
+  <script>
+    // Interactive Map Control
+    function showStageDesc(id, title, desc) {
+      // Remove active class from all stage circles
+      const items = document.querySelectorAll('.stage-item');
+      items.forEach((item, index) => {
+        if (index + 1 === id) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+
+      // Update Popover content with simple DOM write
+      document.getElementById('popoverTitle').innerText = title;
+      document.getElementById('popoverDesc').innerText = desc;
+    }
+
+    // Interactive Folder Tree Explanations
+    const nodeDetails = {
+      'app': {
+        type: 'DIRECTORY (폴더)',
+        name: '📂 app (화면 및 API 라우트)',
+        desc: '<strong>Next.js App Router</strong> 아키텍처의 중추 역할을 수행하는 최상위 디렉토리입니다. 각 하위 폴더명이 실제 웹 사이트의 주소 경로(/check, /quiz, /admin 등)가 됩니다. 서버에서 페이지를 즉각 생성하여 보여주므로 직원의 브라우저 성능에 크게 구애받지 않고 민첩하게 첫 화면을 뿌려줍니다.'
+      },
+      'app-admin': {
+        type: 'DIRECTORY (폴더)',
+        name: '📂 app/admin (관리자 페이지)',
+        desc: '지사 관리자가 접속하여 통계 및 직원 관리를 원스톱으로 관리하는 전용 대시보드 페이지입니다. 보안을 위해 환경변수에 등록된 <strong>ADMIN_PASSWORD</strong>를 정확히 통과한 검증된 사용자에게만 관제 화면의 모든 기능이 활성화됩니다.'
+      },
+      'app-api': {
+        type: 'DIRECTORY (폴더)',
+        name: '📂 app/api/admin (관리자 서버 API)',
+        desc: '어드민 웹 대시보드와 Supabase 백엔드 데이터베이스를 중개하는 백엔드 API입니다. <strong>/employees</strong> API는 직원 정보의 실시간 추가/수정/삭제를 진행하며, <strong>/stats</strong> API는 지사 전체 누적 참여 이력을 가공하여 차트 수치형 카드로 요약 및 전달합니다.'
+      },
+      'app-page': {
+        type: 'FILE (파일)',
+        name: '📄 app/page.tsx (메인 홈 라우터)',
+        desc: '사용자가 [http://localhost:3000](http://localhost:3000)에 처음 진입하면 보게 되는 <strong>메인 홈 화면</strong>입니다. 서버 단에서 사용자의 Supabase 임시 세션 ID와 매핑된 누적 제출 카운트를 초고속 계산하여 청렴 새싹 비주얼 및 이달의 체크/퀴즈 참여 여부 정보를 실시간 렌더링해 줍니다.'
+      },
+      'components': {
+        type: 'DIRECTORY (폴더)',
+        name: '📂 components (재사용 UI 컴포넌트)',
+        desc: 'React의 강점인 <strong>"부품형 개발"</strong>을 실현하는 디렉토리입니다. 메인 페이지 화면들이 거대한 단일 코드로 짜여 있으면 유지보수가 불가능하므로, 나무 성장 게이지, 체크박스 블록, 퀴즈 선택 카드 등 핵심 부품들을 레고처럼 조각조각 분할하여 깔끔하게 보관합니다.'
+      },
+      'components-check': {
+        type: 'DIRECTORY (폴더)',
+        name: '📂 components/check (오늘의 다짐 블록)',
+        desc: '다짐 서약 화면을 독립적으로 제어하는 부품입니다. 브라우저에서 사용자가 다짐 문구를 선택하면 즉시 상태값을 저장하고, 제출일(1일/15일)이 맞는지 검증한 뒤 Supabase DB로 서약 데이터를 보냅니다. 만약 이미 오늘 완료했다면 <strong>"이번 슬롯은 제출 완료"</strong> 문구로 UI를 자동 치환하여 중복 제출을 원천 예방합니다.'
+      },
+      'components-quiz': {
+        type: 'DIRECTORY (폴더)',
+        name: '📂 components/quiz (퀴즈 풀이 블록)',
+        desc: '무작위로 엄선된 2개의 시나리오형 문제를 띄우고 정답을 판독해 해설지를 팝업하는 고도화된 UI 컴포넌트입니다. 답을 클릭하면 내부적으로 `answers` 상태값을 수집하고, 제출 성공 시 <strong>"제출했어요. 해설을 천천히 읽어 보세요"</strong> 힌트와 상세 솔루션을 즉각 제공하여 직원의 인지적 피드백 효과를 극대화합니다.'
+      },
+      'components-dashboard': {
+        type: 'DIRECTORY (폴더)',
+        name: '📂 components/dashboard (나무 성장 비주얼)',
+        desc: '누적 참여 카운트에 따라 이모지 비주얼(🫘 -> 🌱 -> 🌿 -> 🪴 -> 🌳)과 게이지 바를 갱신하는 애니메이션 중심 컴포넌트입니다. 사용자가 다짐이나 퀴즈를 제출하면 이곳의 나무 상태가 바로 자라나 시각적 성취감을 직접 체감할 수 있습니다.'
+      },
+      'lib': {
+        type: 'DIRECTORY (폴더)',
+        name: '📂 lib (핵심 유틸리티 및 데이터 규칙)',
+        desc: '애플리케이션 전반에 적용되는 핵심 정책 기준(콘텐츠)과 전용 커넥터가 정의되어 있습니다. Supabase 데이터베이스와 연결할 수 있는 커넥터 클라이언트 초기화 로직 및 어드민 클라이언트 권한 생성 로직을 통합 관리합니다.'
+      },
+      'lib-constants': {
+        type: 'DIRECTORY (폴더)',
+        name: '📂 lib/constants (청렴 콘텐츠 정의)',
+        desc: '가장 핵심적인 콘텐츠 집합입니다. <ul><li><strong>integrityAxes.ts:</strong> 공공기관 평가 6대 지표 기준</li><li><strong>checkPhrases.ts:</strong> 실무자가 적용하기 쉬운 다짐 행동 양식 목록</li><li><strong>quizBank.ts:</strong> 직무윤리 관련 시나리오 문항과 해설집</li></ul>이 포함되어 있어 향후 지사 평가 기준 변경 시 이 상수의 텍스트만 고쳐 쓰면 화면 코드를 일절 건드리지 않고 전체 문구를 자동 갱신할 수 있는 <strong>유지보수 확장성</strong>이 극대화된 설계입니다.'
+      },
+      'lib-dates': {
+        type: 'DIRECTORY (폴더)',
+        name: '📂 lib/dates (제출 허용 날짜 검증)',
+        desc: '한국 표준시(KST) 시간을 보정하여 당일 날짜가 매월 1일 또는 15일에 해당하는지 검출해 주는 <strong>비즈니스 검증 장치</strong>입니다. 1일/15일이 아닌 날짜에 강제로 제출하려 시도할 경우, 프론트엔드와 백엔드 양측에서 오류를 출력하고 버튼을 비활성화하여 데이터의 엄밀한 적합성을 보존합니다.'
+      },
+      'supabase': {
+        type: 'DIRECTORY (폴더)',
+        name: '📂 supabase (데이터베이스 스키마)',
+        desc: 'Supabase 클라우드 데이터베이스의 설계 도면이 되는 SQL 코드 파일들입니다. <strong>001_init_rls.sql</strong>은 check_ins 및 quiz_attempts 테이블의 정의와 본인 데이터만 CRUD 하도록 보장하는 RLS 규칙을 포함하며, <strong>002_employees.sql</strong>은 지사 전용 소속 직원 명단을 담는 테이블 구조입니다.'
+      }
+    };
+
+    function describeNode(key, type, fallbackText) {
+      const data = nodeDetails[key];
+      if (data) {
+        document.getElementById('nodeType').innerText = data.type;
+        document.getElementById('nodeName').innerText = data.name;
+        document.getElementById('nodeDesc').innerHTML = data.desc;
+      } else {
+        document.getElementById('nodeType').innerText = type.toUpperCase();
+        document.getElementById('nodeName').innerText = key;
+        document.getElementById('nodeDesc').innerHTML = fallbackText;
+      }
+
+      // Smooth glow effect on description panel
+      const panel = document.getElementById('nodeDescPanel');
+      panel.style.boxShadow = '0 0 20px rgba(6, 78, 59, 0.15)';
+      setTimeout(() => {
+        panel.style.boxShadow = 'var(--shadow-premium)';
+      }, 500);
+    }
+  </script>
+
+</body>
+</html>
