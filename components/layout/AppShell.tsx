@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ActiveDayBadge } from "./ActiveDayBadge";
 import { NavLink } from "./NavLink";
+import { LogoutButton } from "@/components/auth/LogoutButton";
 
 type AppShellProps = {
   children: React.ReactNode;
@@ -29,6 +30,8 @@ export function AppShell({ children, currentPath = "/" }: AppShellProps) {
             <NavLink href="/admin" active={currentPath.startsWith("/admin")}>
               관리
             </NavLink>
+            <span className="mx-1 text-slate-300">|</span>
+            <LogoutButton />
           </nav>
         </div>
         <div className="mx-auto max-w-2xl px-4 pb-3">
