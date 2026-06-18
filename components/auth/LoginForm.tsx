@@ -12,12 +12,9 @@ export function LoginForm() {
   const [loading, setLoading] = useState(false);
 
   if (!hasSupabaseBrowserConfig()) {
-    const urlDefined = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL);
-    const keyDefined = Boolean(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
     return (
       <p className="rounded-2xl bg-amber-50 p-4 text-sm text-amber-900 ring-1 ring-amber-100">
-        Supabase 환경 변수를 설정해 주세요.<br />
-        URL: {urlDefined ? "✓" : "✗"} / KEY: {keyDefined ? "✓" : "✗"}
+        Supabase 환경 변수를 설정해 주세요.
       </p>
     );
   }
