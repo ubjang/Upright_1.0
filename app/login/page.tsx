@@ -16,7 +16,7 @@ export default function LoginPage() {
               </svg>
             </div>
             <h1 className="text-xl font-bold text-emerald-950">청렴 바이브</h1>
-            <p className="mt-1 text-sm text-slate-500">이메일로 간편하게 로그인하세요</p>
+            <p className="mt-1 text-sm text-slate-500">로그인하거나 계정을 만드세요</p>
           </div>
 
           <LoginForm />
